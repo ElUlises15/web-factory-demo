@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="es-AR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reserva + pago + aviso por email · Add-on opcional (maqueta/sandbox)</title>
+<meta name="description" content="Maqueta del add-on de reserva con pago y aviso al dueño. Pago deshabilitado fuera del sandbox local.">
+<meta name="robots" content="noindex, nofollow"><link rel="icon" href="data:,">
+<script src="../assets/theme.js"></script><link rel="stylesheet" href="../assets/styles.css"><link rel="stylesheet" href="../assets/enhancements.css">
+<script src="booking.js" defer></script></head>
+<body class="gallery booking-page"><a class="skip" href="#contenido">Saltar al contenido</a>
+<div class="theme-toolbar"><label for="theme-choice">Apariencia</label><select id="theme-choice" data-theme-select><option value="system">Según el sistema</option><option value="light">Claro</option><option value="dark">Oscuro</option></select></div>
+<div class="demo-bar"><span>ADD-ON OPCIONAL · maqueta · sin cobros reales</span><a href="../index.html">Volver a las demos ↗</a></div>
+<main id="contenido">
+<section class="gallery-intro">
+  <p class="eyebrow">Reserva + pago + aviso al dueño</p>
+  <h1>Primero se verifica el pago. Después se avisa.</h1>
+  <p class="lead">Así funcionaría una reserva con pago para barbería, estética, pilates o gimnasio. El sitio estático no puede acreditar un pago: la confirmación depende de un servidor que recibe el aviso firmado del proveedor y consulta el pago antes de confirmar.</p>
+  <p class="demo-hint" data-sandbox-banner>Pago deshabilitado: esta página está abierta como archivo estático. Para probar el flujo completo ejecutá <code>python integration/sandbox_server.py</code> y abrí <code>http://127.0.0.1:8767/integration/</code>. El sandbox usa un proveedor SIMULADO local; no es Mercado Pago y no envía emails.</p>
+</section>
+
+<section class="section flow" aria-labelledby="flow-title">
+  <h2 id="flow-title">El recorrido seguro</h2>
+  <ol class="flow-steps">
+    <li><strong>Elegís turno.</strong> El navegador envía sólo el turno y un contacto. Nunca el importe.</li>
+    <li><strong>El servidor reserva por unos minutos</strong> y crea el pago en el proveedor con el precio de su propio catálogo.</li>
+    <li><strong>Pagás fuera del sitio,</strong> en el checkout del proveedor. El sitio no ve ni guarda tarjetas.</li>
+    <li><strong>El proveedor avisa al servidor</strong> con un webhook firmado. El servidor valida la firma y consulta el pago.</li>
+    <li><strong>Recién con el pago aprobado</strong> se confirma el turno y se envía el email al dueño.</li>
+  </ol>
+  <p class="demo-hint">Volver del checkout con <code>?status=approved</code> en la URL no confirma nada: esta página siempre le pregunta el estado al servidor.</p>
+</section>
+
+<section class="section booking-panel" aria-labelledby="try-title">
+  <h2 id="try-title">Probar el flujo</h2>
+  <div class="booking-grid">
+    <div>
+      <label for="slot">Turno de ejemplo</label>
+      <select id="slot" data-slot disabled><option value="">Disponible sólo en el sandbox local</option></select>
+      <label for="email">Email de contacto (sólo ficticio, terminado en @example.invalid)</label>
+      <input id="email" data-email type="email" inputmode="email" autocomplete="off" value="cliente@example.invalid" disabled aria-describedby="email-help">
+      <p id="email-help" class="demo-hint">El sandbox rechaza emails reales. No cargues datos personales.</p>
+      <button type="button" class="button" data-pay disabled>Pago deshabilitado</button>
+    </div>
+    <div class="booking-status" role="status" aria-live="polite" data-status tabindex="-1">
+      <p class="eyebrow">Estado de la reserva</p>
+      <p>Sin reserva en curso.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section details" aria-labelledby="req-title">
+  <p class="eyebrow">Para activarlo con un cliente real</p>
+  <h2 id="req-title">Lo que falta y no se puede simular</h2>
+  <ul>
+    <li>Cuenta de Mercado Pago del comercio, aplicación, credenciales de prueba y luego de producción, cargadas sólo en el servidor.</li>
+    <li>Backend desplegado con HTTPS, base de datos, tareas en segundo plano y conciliación periódica.</li>
+    <li>Proveedor de email con dominio propio verificado (por ejemplo Resend) y remitente autorizado.</li>
+    <li>Política de cancelación, reembolso y no-show escrita y aprobada por el negocio.</li>
+    <li>Prueba con cuenta compradora de test y simulador de webhooks del panel antes de cobrar de verdad.</li>
+  </ul>
+  <p class="demo-hint">Detalle técnico, costos observados y fuentes: <code>integration/README.md</code> y <code>qa/RESEARCH.md</code>.</p>
+</section>
+</main>
+<footer><span>Add-on opcional · no incluido en el precio base del sitio estático</span><a href="../index.html">Explorar las demos ↗</a></footer>
+</body></html>

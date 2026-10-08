@@ -1,0 +1,227 @@
+/* Segunda fase: modos, legibilidad sobre fotos y variantes comerciales.
+   Mantener este archivo separado hace visibles los overrides del kit inicial. */
+html{color-scheme:light}
+html[data-theme="dark"]{color-scheme:dark}
+.theme-toolbar{display:flex;justify-content:flex-end;align-items:center;gap:.7rem;flex-wrap:wrap;padding:.45rem clamp(1rem,4vw,4rem);border-bottom:1px solid var(--line);font-size:.8rem}
+.theme-toolbar select{font:inherit;min-height:44px;max-width:100%;padding:.4rem .7rem;background:var(--paper);color:var(--ink);border:1px solid var(--line);border-radius:0}
+select:focus-visible,button:focus-visible{outline:3px solid var(--ink);outline-offset:4px}
+/* Texto de portada siempre sobre fondo sólido; no depende del brillo de la foto. */
+.gallery .demo-cover{background:var(--paper);color:var(--ink);padding:1.2rem;gap:1.1rem;justify-content:flex-start;min-height:400px;isolation:auto}
+.gallery .demo-cover::before{display:none}
+.gallery .demo-cover .cover-image{position:static;z-index:auto;height:180px;aspect-ratio:16/9;width:100%;object-fit:cover;transition:none}
+.gallery .demo-cover>*:not(.cover-image){z-index:auto;position:static}
+.gallery .demo-cover strong{text-shadow:none;font-size:2.1rem;max-width:16ch}
+.gallery .demo-cover>span:last-child{margin-top:auto;min-height:44px;display:flex;align-items:center}
+.gallery .demo-cover:hover .cover-image{transform:none}
+.product-photo,.mascotas .product-photo,.deco .product-1,.deco .product-3{aspect-ratio:auto;border-radius:0}
+.product-photo img{height:auto;aspect-ratio:1}
+.mascotas .product-photo img{border-radius:50%}
+.product-photo figcaption{position:static;background:var(--panel);color:var(--muted)}
+.hero-visual{border:1px solid var(--line)}
+.hero-visual figcaption,.product-photo figcaption{font-size:.78rem;line-height:1.5}
+.trade .hero{background:var(--hero-bg,#252f31);color:#f0f0e8}
+.trade .hero-note{color:var(--ink)}
+.social-links{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1rem}
+.social-links[hidden]{display:none}
+.social-links a{min-height:44px;display:inline-flex;align-items:center;padding:.4rem .7rem;border:1px solid var(--line)}
+.faq{max-width:1600px}.faq details{padding:1rem 0;border-bottom:1px solid var(--line)}
+.faq summary{cursor:pointer;font-size:1.1rem;min-height:44px}.faq details p{margin-top:.8rem;color:var(--muted)}
+.tariffs{background:var(--panel)}.tariff-list{display:grid;gap:1rem}.tariff{padding:1.3rem;border:1px solid var(--line);background:var(--paper)}
+.tariff .amount{font-family:var(--headline);font-size:1.8rem;line-height:1.25;overflow-wrap:anywhere;margin:.5rem 0}.tariff p{font-size:.95rem}.tariff small{display:block;color:var(--muted);margin-bottom:1rem}
+.tariffs .pricing-notice{max-width:75ch;font-size:.9rem}
+.gimnasio{--paper:#f4efe7;--ink:#352c26;--muted:#62554a;--accent:#754529;--panel:#e5d7c8;--line:#b19b88}
+.gimnasio .hero{grid-template-columns:1fr;min-height:auto;gap:2rem}.gimnasio h1{max-width:17ch}.gimnasio .hero-copy{max-width:75ch}.gimnasio .training-brief{border-radius:0;min-height:auto;padding:1.5rem}.training-brief dd{font-family:inherit;font-size:1.2rem}
+.gimnasio .proposal{grid-template-columns:1fr}.training-plan{padding:1.8rem;background:var(--panel);display:flex;flex-direction:column}.training-plan .button{margin-top:auto;align-self:flex-start}.gimnasio .entries{gap:1rem}
+.regaleria{--paper:#f6ede4;--ink:#4b3527;--muted:#705341;--accent:#7c4328;--panel:#ebd8c6;--line:#b49a86}
+.regaleria h1{max-width:14ch}.regaleria .gift-brief{background:var(--panel);border:0}.regaleria .entries{grid-template-columns:1fr}.regaleria .product-info{padding:1.3rem;background:var(--panel)}
+.servicio-tecnico{--paper:#eef1f2;--ink:#253b44;--muted:#4c646e;--accent:#294f60;--panel:#dbe5e8;--line:#9bafb8}
+.servicio-tecnico .hero{--hero-bg:#203944}.servicio-tecnico .diagnostic{border:1px solid var(--line)}.diagnostic dd{font:1.15rem/1.4 var(--sans)}.diagnostic dt{padding-top:.4rem}.servicio-tecnico .service{display:block;padding:1.5rem;background:var(--panel)}.servicio-tecnico .service>div{display:block}.servicio-tecnico .ordinal{display:block;margin-bottom:1rem}.servicio-tecnico .entries{gap:1rem}
+/* Tokens nocturnos con variación de acento por familia. No se oscurecen fotos. */
+html[data-theme="dark"] :is(body,.demo-cover){--paper:#171e1d;--ink:#f0eee7;--muted:#c0c9c3;--accent:#c1d8bf;--on-accent:#172218;--panel:#26312d;--line:#84958b;--hero-bg:#101a18}
+html[data-theme="dark"] :is(.food,.regaleria){--paper:#231d19;--ink:#f5eadc;--muted:#d4c1ae;--accent:#e6b292;--panel:#382a22;--line:#ac8d76;--on-accent:#2a1c13}
+html[data-theme="dark"] :is(.wellness,.gimnasio){--paper:#211d21;--ink:#f1e8ef;--muted:#d1c0cc;--accent:#dfb6cd;--panel:#352b33;--line:#a18b99;--on-accent:#2b1e27}
+html[data-theme="dark"] .professional{--paper:#172329;--ink:#e7f0f3;--muted:#b9cbd2;--accent:#b1d5e1;--panel:#253940;--line:#7e9da9;--on-accent:#152e38}
+html[data-theme="dark"] .trade{--paper:#1b2427;--ink:#e7eff0;--muted:#bfced1;--accent:#b7d3db;--panel:#2b3b40;--line:#88a2ab;--on-accent:#182d33}
+html[data-theme="dark"] .catalog:not(.regaleria){--paper:#20231c;--ink:#edf0e3;--muted:#c7cebb;--accent:#ccdbac;--panel:#303828;--line:#96a680;--on-accent:#252f1c}
+/* Si JS está deshabilitado, el sistema todavía decide la apariencia inicial. */
+@media(prefers-color-scheme:dark){html:not([data-theme]){color-scheme:dark}html:not([data-theme]) :is(body,.demo-cover){--paper:#171e1d;--ink:#f0eee7;--muted:#c0c9c3;--accent:#c1d8bf;--on-accent:#172218;--panel:#26312d;--line:#84958b;--hero-bg:#101a18}}
+@media(min-width:760px){.tariff-list{grid-template-columns:repeat(3,minmax(0,1fr))}.training-brief dl{display:grid;grid-template-columns:repeat(3,1fr);gap:0 2rem}.training-brief dt{grid-row:1}.training-brief dd{grid-row:2}.gimnasio .entries,.servicio-tecnico .entries{grid-template-columns:repeat(3,minmax(0,1fr))}.regaleria .entries{grid-template-columns:repeat(2,minmax(0,1fr))}.regaleria .product{display:grid;grid-template-columns:1fr 1fr}.regaleria .product-photo{align-self:start}.regaleria .hero{grid-template-columns:1.3fr 1fr}}
+@media(max-width:759px){.regaleria .product{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr)}.regaleria .product-photo{align-self:start}.regaleria .product-info h3{font-size:1.25rem}.regaleria .product-info{padding:1rem}.training-plan{padding:1.5rem}}
+@media(max-width:359px){.regaleria .product{grid-template-columns:1fr}.regaleria .product-photo img{max-height:240px;object-fit:cover}}
+@media print{.theme-toolbar,.mobile-cta,.booking-actions{display:none}}
+
+/* ===== Tercera fase: acabado comercial. Todo con tipografías del sistema, sin fuentes remotas. ===== */
+:root{--sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;--headline:"Iowan Old Style","Palatino Linotype","Book Antiqua",Palatino,Georgia,serif;--radius:14px;--shadow:0 1px 2px rgb(0 0 0 / .06),0 14px 34px -16px rgb(0 0 0 / .28)}
+body{font-family:var(--sans);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+.wellness,.trade,.mascotas,.consultoria{--headline:var(--sans)}
+.brand small,.scope-note h2{font-family:var(--sans)}
+html{scroll-padding-top:6.5rem}
+/* Cabecera fija y navegación con más jerarquía */
+.site-header{position:sticky;top:0;z-index:5;background:var(--paper);box-shadow:0 1px 0 var(--line);padding-top:1rem;padding-bottom:1rem}
+.site-header nav{gap:.25rem 1.1rem}
+.site-header nav a{font-weight:600;font-size:.95rem;text-decoration:none;border-bottom:2px solid transparent}
+.site-header nav a:hover{border-bottom-color:currentColor}
+/* Botones: primario + secundario */
+.button{border-radius:999px;padding:.85rem 1.45rem;transition:transform .15s ease,filter .15s ease}
+.button:hover{transform:translateY(-1px)}
+.button.ghost{background:transparent;color:var(--ink);border-color:var(--ink)}
+.text-button{border-radius:999px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:.75rem;align-items:center}
+.trade .hero-copy .button.ghost{background:transparent;color:#f0f0e8;border-color:#f0f0e8}
+.button:disabled{cursor:not-allowed;background:transparent;color:var(--ink);border:1px dashed var(--ink);transform:none;filter:none}
+/* Superficies */
+.hero-visual{border-radius:10px}
+.hero-visual img{transition:transform .5s ease}
+.tariff{border-radius:var(--radius);box-shadow:var(--shadow);display:flex;flex-direction:column}
+.tariff h3{margin-bottom:0}
+.tariff small{display:inline;margin:0;font-family:var(--sans);font-size:.85rem}
+.tariff .validity{margin:auto 0 0;font-size:.85rem;color:var(--muted)}
+.tariffs .section-heading{margin-bottom:1.5rem}
+.training-plan,.servicio-tecnico .service,.catering .service,.limpieza .service{border-radius:var(--radius)}
+.regaleria .product-info{border-radius:0 0 var(--radius) var(--radius)}
+/* Reserva + pago (add-on, maqueta) */
+.booking-callout{display:grid;gap:2rem;background:var(--panel);color:var(--ink);max-width:none;border-top:0;box-shadow:inset 6px 0 0 var(--accent)}
+.booking-callout h2{max-width:22ch}
+.mini-steps{counter-reset:step;list-style:none;padding:0;margin:1.5rem 0 0;display:grid;gap:.7rem}
+.mini-steps li{counter-increment:step;display:flex;gap:.8rem;align-items:baseline}
+.mini-steps li::before{content:counter(step);flex:0 0 1.9rem;height:1.9rem;border-radius:50%;background:var(--accent);color:var(--on-accent);display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700}
+.booking-actions{align-self:center;padding:1.5rem;border-radius:var(--radius);background:var(--paper);border:1px solid var(--line)}
+.booking-callout .booking-disabled{background:transparent;color:var(--ink);border:1px dashed var(--ink)}
+.booking-actions .demo-hint{margin:1rem 0 0}
+/* Preguntas frecuentes con disclosure nativo */
+.faq{display:grid;gap:1.5rem}
+.faq summary{font-weight:600;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:1.6rem;line-height:1;font-weight:400}
+.faq details[open] summary::after{content:"−"}
+/* Contacto: datos, mapa y redes */
+.info-list{display:grid;gap:1rem;margin:1.5rem 0 1rem}
+.info-list dt{font-size:.75rem;text-transform:uppercase;letter-spacing:.12em;font-weight:700}
+.info-list dd{margin:.2rem 0 0;font-size:1.1rem}
+.map-link{display:inline-flex;min-height:44px;align-items:center;font-weight:600}
+.map-link[hidden]{display:none}
+.social-links a{border-radius:999px;text-decoration:none;font-weight:600}
+/* CTA fija en móvil: siempre a un toque */
+.mobile-cta{display:none}
+/* Paneles tipográficos (demos sin foto) */
+.type-panel{border-radius:10px;padding:1.2rem}
+.type-panel>p{font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;margin:0 0 1rem;font-weight:700}
+.schedule-board .days,.schedule-board .cells{display:grid;grid-template-columns:repeat(6,1fr);gap:.45rem}
+.schedule-board .days span{font-weight:700;text-align:center}
+.schedule-board .cells{margin-top:.6rem}
+.schedule-board i{height:30px;border-radius:6px}
+.hero-note .ticket dl{display:grid;grid-template-columns:auto 1fr;gap:.5rem 1rem;margin:0}
+.hero-note .ticket dt{font:700 .75rem/1.6 var(--sans);letter-spacing:.1em;padding:0}
+.hero-note .ticket dd{margin:0;font:1rem/1.6 ui-monospace,Consolas,"Courier New",monospace}
+.gimnasio .training-brief dl,.training-brief dl{display:block}
+.gimnasio .training-brief{background:var(--panel);border-radius:var(--radius)}
+/* Barra superior unificada: apariencia + aviso de demo en una sola franja oscura */
+.theme-toolbar,.demo-bar{background:var(--bar-bg,var(--ink));color:var(--bar-ink,var(--paper))}
+.theme-toolbar{border-bottom:0;padding-top:.3rem;padding-bottom:.3rem}
+.theme-toolbar select{background:var(--bar-bg,var(--ink));color:var(--bar-ink,var(--paper));border-color:var(--bar-ink,var(--paper));border-radius:999px;min-height:44px;padding:.3rem .9rem}
+.theme-toolbar select option{background:var(--paper);color:var(--ink)}
+.theme-toolbar select:focus-visible,.demo-bar a:focus-visible{outline-color:var(--bar-ink,var(--paper))}
+.demo-bar{align-items:center;border-top:1px solid color-mix(in srgb,var(--bar-ink,var(--paper)) 25%,transparent)}
+/* En oscuro, las barras quedan MÁS oscuras que la página (no se invierten a claro). */
+html[data-theme="dark"] body{--bar-bg:#0b0d0c;--bar-ink:#f3f1ea}
+@media(prefers-color-scheme:dark){html:not([data-theme]) body{--bar-bg:#0b0d0c;--bar-ink:#f3f1ea}}
+/* Bloques "invertidos" (oscuros en modo claro): en modo oscuro siguen siendo los más oscuros. */
+.wellness .process,.gallery-addon,.type-panel{background:var(--bar-bg,var(--ink));color:var(--bar-ink,var(--paper))}
+.gallery-addon .eyebrow{color:var(--bar-ink,var(--paper))}
+.gallery-addon .button{background:var(--bar-ink,var(--paper));color:var(--bar-bg,var(--ink));border-color:var(--bar-ink,var(--paper))}
+html[data-theme="dark"] :is(.gallery-addon,.type-panel){border:1px solid var(--line)}
+.schedule-board i{background:color-mix(in srgb,var(--bar-ink,var(--paper)) 16%,transparent)}
+.schedule-board .slot-1{background:color-mix(in srgb,var(--bar-ink,var(--paper)) 55%,transparent)}
+.schedule-board .slot-3{background:color-mix(in srgb,var(--bar-ink,var(--paper)) 88%,transparent)}
+.demo-bar a{min-height:44px;display:inline-flex;align-items:center}
+/* Galería: grilla equilibrada y tarjetas parejas */
+.features h2.eyebrow{font-family:var(--sans);font-size:.75rem;letter-spacing:.14em;font-weight:700;margin-bottom:1rem}
+.demo-card{display:flex;flex-direction:column}
+.gallery .demo-cover{flex:1}
+.gallery .demo-cover strong{max-width:none;text-wrap:balance}
+.demo-card h3 a{text-decoration:none;font-weight:700}
+.demo-card h3 a:hover{text-decoration:underline}
+/* Bloque de información: tres columnas en escritorio */
+@media(min-width:760px){
+  .details ul{grid-template-columns:repeat(3,minmax(0,1fr));gap:1.5rem;list-style:none;padding:0;max-width:none}
+  .details li{border-top:2px solid var(--ink);padding:1rem 0 0}
+  .gallery .features ul{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .demo-grid.cols-4{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(min-width:1100px){.demo-grid.cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}.demo-grid.cols-4 .demo-cover strong{font-size:1.8rem}}
+/* Tarjetas alineadas por fila con subgrid (portada / título / bajada) */
+@supports (grid-template-rows:subgrid){.demo-grid{grid-auto-rows:auto;row-gap:2.5rem}.demo-card{display:grid;grid-row:span 3;grid-template-rows:subgrid;row-gap:0}}
+.gallery .demo-cover .badges{margin:0}
+.gallery .demo-cover .badges li{background:var(--panel)}
+.gallery .demo-cover>span.cover-cta{margin-top:auto;min-height:44px;display:flex;align-items:center;font-weight:700}
+.gallery-intro .demo-hint{margin-top:1.5rem}
+.gallery .cover-type{flex-direction:column;align-items:flex-start;justify-content:flex-end;gap:.5rem}
+.cover-type small{font:600 .9rem/1.3 var(--sans);letter-spacing:0}
+.gallery .cover-gimnasio{background:#352c26 repeating-linear-gradient(90deg,transparent 0 44px,rgb(244 239 231 / .07) 44px 88px);color:#f4efe7}
+.gallery .cover-servicio-tecnico{background:#203944 repeating-linear-gradient(0deg,transparent 0 24px,rgb(238 241 242 / .09) 24px 25px);color:#eef1f2}
+/* Galería */
+.gallery-intro{max-width:1600px;display:grid;gap:2.5rem;align-items:center}
+.gallery-intro h1{max-width:13ch}
+.mosaic{margin:0;display:grid;grid-template-columns:1.3fr 1fr;grid-template-rows:1fr 1fr;gap:.75rem;height:clamp(260px,34vw,480px)}
+.mosaic img{width:100%;height:100%;object-fit:cover;border-radius:var(--radius);display:block;min-height:0}
+.mosaic img:first-child{grid-row:1 / 3}
+.features{padding:0 clamp(1rem,5vw,5rem) 2.5rem;max-width:1600px}
+.features ul{list-style:none;padding:0;margin:0;display:grid;gap:.8rem;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.features li{padding:1.1rem 1.2rem;border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);display:grid;gap:.3rem}
+.features span{color:var(--muted);font-size:.92rem}
+.filters a{border-radius:999px;gap:.5rem}
+.filters .count{font-size:.75rem;font-weight:700;min-width:1.6rem;height:1.6rem;border-radius:999px;background:var(--ink);color:var(--paper);display:inline-flex;align-items:center;justify-content:center}
+.gallery .demo-cover{border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid var(--line);background:var(--paper);color:var(--ink);min-height:380px}
+.gallery .demo-cover .cover-image,.cover-type{border-radius:10px}
+.cover-type{height:180px;display:flex;align-items:flex-end;padding:1rem 1.1rem;background:var(--ink);color:var(--paper);font:700 clamp(1.6rem,3vw,2.2rem)/1 var(--sans);letter-spacing:-.03em}
+.cover-gimnasio{background:repeating-linear-gradient(90deg,var(--ink) 0 42px,color-mix(in srgb,var(--ink) 88%,var(--paper)) 42px 84px)}
+.cover-servicio-tecnico{background:repeating-linear-gradient(0deg,var(--ink) 0 26px,color-mix(in srgb,var(--ink) 90%,var(--paper)) 26px 27px)}
+.gallery .demo-cover:hover{box-shadow:0 18px 40px -18px rgb(0 0 0 / .4);transform:translateY(-2px)}
+.gallery .demo-cover{transition:transform .2s ease,box-shadow .2s ease}
+.badges{list-style:none;padding:0;margin:.7rem 0 0;display:flex;flex-wrap:wrap;gap:.4rem}
+.badges li{font-size:.75rem;padding:.15rem .6rem;border:1px solid var(--line);border-radius:999px}
+.gallery-addon{margin:1rem clamp(1rem,5vw,5rem) 3rem;padding:clamp(1.5rem,4vw,3rem);border-radius:var(--radius);display:grid;gap:1.5rem;align-items:center}
+/* Página del add-on */
+.booking-page code{font-size:.9em;overflow-wrap:anywhere}
+.flow-steps{display:grid;gap:1rem;padding-left:1.3rem;max-width:75ch}
+.booking-grid{display:grid;gap:2rem}
+.booking-panel label{display:block;font-weight:700;margin:1rem 0 .4rem}
+.booking-panel select,.booking-panel input{width:100%;min-height:48px;padding:.6rem .8rem;font:inherit;background:var(--paper);color:var(--ink);border:1px solid var(--ink);border-radius:10px}
+.booking-panel .button{margin-top:1.2rem}
+.booking-status{padding:1.5rem;border-radius:var(--radius);background:var(--panel);align-self:start}
+.booking-status:focus-visible{outline:3px solid var(--ink);outline-offset:4px}
+.state-title{font-size:1.3rem;font-weight:700}
+@media(min-width:760px){
+  .gimnasio .hero{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr)}
+  .booking-callout{grid-template-columns:1.4fr 1fr;padding-top:4rem;padding-bottom:4rem}
+  .faq{grid-template-columns:1fr 1.6fr;gap:4rem}
+  .info-list{grid-template-columns:1fr 1fr}
+  .gallery-addon{grid-template-columns:1fr auto}
+  .booking-grid{grid-template-columns:1fr 1fr}
+}
+@media(min-width:960px){.gallery-intro{grid-template-columns:1.15fr 1fr}}
+@media(max-width:759px){
+  .site-header{position:static}
+  .site-header nav{flex-wrap:nowrap;overflow-x:auto;max-width:100%;gap:0 1rem;padding:.5rem .6rem;margin:0 -.6rem;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
+  .site-header nav a:focus-visible{outline-offset:1px;box-shadow:none}
+  .site-header nav{-webkit-mask-image:linear-gradient(90deg,#000 88%,transparent);mask-image:linear-gradient(90deg,#000 88%,transparent)}
+  .site-header nav a{white-space:nowrap;flex:0 0 auto}
+  .booking-disabled{border-radius:14px}
+  .mobile-cta{display:block;position:fixed;left:0;right:0;bottom:0;z-index:6;padding:.6rem 1rem calc(.6rem + env(safe-area-inset-bottom));background:var(--paper);border-top:1px solid var(--line);box-shadow:0 -8px 24px -12px rgb(0 0 0 / .25)}
+  .mobile-cta .button{width:100%}
+  body:has(.mobile-cta){padding-bottom:5.5rem}
+  .mosaic{height:240px}
+}
+@media(prefers-reduced-motion:reduce){.button:hover,.gallery .demo-cover:hover{transform:none}}
+.tariffs .pricing-notice{margin-top:1.5rem}
+html.cta-observer .mobile-cta{transition:transform .2s ease,visibility .2s}
+html.cta-observer .mobile-cta:not(.is-shown){transform:translateY(120%);visibility:hidden}
+.trade .hero-note,.servicio-tecnico .diagnostic{border-radius:var(--radius)}
+@media(max-width:759px){.site-header nav{scrollbar-width:none}.site-header nav::-webkit-scrollbar{display:none}}
+.filters .count{background:var(--panel);color:var(--ink);border:1px solid var(--line)}
+@media(max-width:519px){
+  .hero-actions .button{flex:1 1 100%}
+  .regaleria .product{grid-template-columns:1fr}
+  .regaleria .product-photo img{aspect-ratio:16/10;object-fit:cover}
+  .regaleria .product-info{border-radius:0 0 var(--radius) var(--radius)}
+}
